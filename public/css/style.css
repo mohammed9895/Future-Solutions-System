@@ -1,0 +1,22 @@
+a:hover {
+    text-decoration: none;
+}
+.my_input {
+    margin-bottom: 20px;
+}
+.btn-h1 {
+    margin-top: 18px;
+}
+.main_card {
+    background: #5cb85c;
+    padding: 30px;
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+.main_card h2 {
+    font-weight: 700;
+}
+.card_icon {
+   font-size: 30px;
+}
