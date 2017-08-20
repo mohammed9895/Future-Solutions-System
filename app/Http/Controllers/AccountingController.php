@@ -6,8 +6,11 @@ use App\Accounting;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 
+
 // import the Intervention Image Manager Class
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Images;
+
 
 class AccountingController extends Controller
 {
@@ -72,7 +75,8 @@ class AccountingController extends Controller
 
         $accounting->save();
 
-
+        // flash message
+        Session::flash('success', 'The Payment was successfully saved!');
 
         // redirect to index
 
@@ -89,7 +93,7 @@ class AccountingController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('accounting.show');
     }
 
     /**
