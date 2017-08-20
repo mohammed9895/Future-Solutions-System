@@ -81,7 +81,13 @@
         </nav>
 
         <div class="container">
-            @include('partials._messages')
+            @if(Session::has('success'))
+
+                <div class="alert alert-success">
+                    <strong>Success :</strong> {{ \Illuminate\Support\Facades\Session::get('success') }}
+                </div>
+
+            @endif
         </div>
         @yield('content')
     </div>
