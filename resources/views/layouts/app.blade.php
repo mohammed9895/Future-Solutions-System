@@ -80,6 +80,9 @@
             </div>
         </nav>
 
+        <div class="container">
+            @include('partials._messages')
+        </div>
         @yield('content')
     </div>
 
