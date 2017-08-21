@@ -5,7 +5,7 @@
     <div class="row">
 
         <div class="col-xs-12 col-sm-6">
-            <a href="#">
+            <a href="{{ route('accounting.index') }}">
                 <div class="main_card text-center">
                     <div class="card_icon">
                         <div class="fa fa-calculator"></div>

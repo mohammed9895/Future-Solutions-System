@@ -21,7 +21,7 @@ class AccountingController extends Controller
      */
     public function index()
     {
-        $payments = Accounting::all();
+        $payments = Accounting::paginate(5);
         return view('accounting.index')->withPayments($payments);
     }
 
@@ -93,7 +93,9 @@ class AccountingController extends Controller
      */
     public function show($id)
     {
-        //return view('accounting.show');
+        $payments = Accounting::find($id);
+
+        return view('accounting.show')->withPayments($payments);
     }
 
     /**
@@ -104,7 +106,14 @@ class AccountingController extends Controller
      */
     public function edit($id)
     {
-        //
+        // find the post in the database and store it in a var
+
+        $payments = Accounting::find($id);
+
+        // return view wth var data
+
+        return view('accounting.edit')->withPayments($payments);
+
     }
 
     /**
@@ -116,7 +125,43 @@ class AccountingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate data
+
+        $this->validate($request, array(
+            'date' => 'required|date',
+            'value' => 'required|max:9',
+            'project_no' => 'required|max:255',
+            'p_type' => 'required',
+            'stage' => 'required',
+            'image' => 'image'
+        ));
+
+        // save to database
+
+        $payments = Accounting::find($id);
+
+        $payments->date = $request->input('date');
+        $payments->value = $request->input('value');
+        $payments->project_no = $request->input('project_no');
+        $payments->p_type = $request->input('p_type');
+        $payments->stage = $request->input('stage');
+
+        if ($request->hasFile('invoice')) {
+            $image = $request->file('invoice');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('invoices/' . $filename);
+            Images::make($image)->save($location);
+
+            $payments->image = $filename;
+        }
+
+        $payments->save();
+
+        // flash message
+        Session::flash('success', 'The Payment was successfully saved!');
+
+        // redirect to show page
+        return redirect()->route('accounting.show', $payments->id);
     }
 
     /**
@@ -127,6 +172,12 @@ class AccountingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payments = Accounting::find($id);
+
+        $payments->delete();
+
+        Session::flash('success', 'The Payment was successfully deleted');
+
+        return redirect()->route('accounting.index');
     }
 }
