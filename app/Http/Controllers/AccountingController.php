@@ -21,7 +21,7 @@ class AccountingController extends Controller
      */
     public function index()
     {
-        $payments = Accounting::paginate(5);
+        $payments = Accounting::orderBy('id', 'desc')->paginate(5);
         return view('accounting.index')->withPayments($payments);
     }
 
