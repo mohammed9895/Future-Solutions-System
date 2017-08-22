@@ -86,7 +86,20 @@ class DescriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array(
+            'description' => 'required'
+        ));
+
+
+        $description = Description::find($id);
+
+        $description->description = $request->input('description');
+
+        $description->save();
+
+        Session::flash('success', 'The Description was successfully saved!');
+
+        return redirect()->route('description.index');
     }
 
     /**

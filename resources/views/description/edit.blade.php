@@ -11,11 +11,11 @@
                 <div class="futu_form">
 
 
-                    {!! Form::model($description, ['route' => ['description.update', $description->id]]) !!}
+                    {!! Form::model($description, ['route' => ['description.update', $description->id], 'method' => 'PUT']) !!}
 
 
                     {{ Form::label('description', 'Description Number') }}
-                    {{ Form::text('description', '', ['class' => 'my_input form-control']) }}
+                    {{ Form::text('description', null, ['class' => 'my_input form-control']) }}
 
                     {{ Form::submit('Save', ['class' => 'my_input btn btn-success']) }}
 

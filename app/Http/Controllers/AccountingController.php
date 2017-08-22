@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Accounting;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
+use App\Description;
 
 
 // import the Intervention Image Manager Class
@@ -32,7 +33,9 @@ class AccountingController extends Controller
      */
     public function create()
     {
-        return view('accounting.create');
+        $description = Description::all();
+
+        return view('accounting.create')->withDescription($description);
     }
 
     /**
@@ -110,9 +113,11 @@ class AccountingController extends Controller
 
         $payments = Accounting::find($id);
 
+        $description = Description::all();
+
         // return view wth var data
 
-        return view('accounting.edit')->withPayments($payments);
+        return view('accounting.edit')->with(['payments' => $payments, 'description' => $description]);
 
     }
 

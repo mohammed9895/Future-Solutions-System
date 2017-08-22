@@ -24,7 +24,13 @@
                     {{ Form::text('project', '', ['class' => 'my_input form-control']) }}
 
                     {{ Form::label('type', 'Type') }}
-                    {{ Form::select('type', ['type1' => 'Type 1', 'type2' => 'Type 2', 'type3' => 'Type 3', ], null, ['class' => 'my_input form-control']) }}
+                    <select name="type" class="form-control my_input" id="type">
+                        @foreach($description as $desc)
+
+                            <option value="{{ $desc->description }}">{{ $desc->description }}</option>
+
+                        @endforeach
+                    </select>
 
                     {{ Form::label('stage', 'Stage') }}
                     {{ Form::text('stage', '', ['class' => 'my_input form-control']) }}
