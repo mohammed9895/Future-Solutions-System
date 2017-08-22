@@ -24,4 +24,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('accounting', 'AccountingController');
 
+    Route::resource('description', 'DescriptionController');
+
 });
