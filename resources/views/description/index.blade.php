@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $desc->id }}</td>
                             <td>{{ $desc->description }}</td>
-                            <td>{{ $desc->create_at }}</td>
+                            <td>{{ $desc->created_at }}</td>
                             <td>
                                 <a href="{{ route('description.show', $desc->id) }}" class="btn btn-info">Show</a>
                                 <a href="{{ route('description.edit', $desc->id) }}" class="btn btn-warning">Edit</a>

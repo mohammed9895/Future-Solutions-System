@@ -54,6 +54,7 @@
 
 
                 <a href="{{ route('accounting.edit', $payments->id) }}" class="btn btn-warning btn-block">Edit</a>
+                <a href="{{ route('accounting.create') }}" class="btn btn-warning btn-block">Add New</a>
                 <br>
                 {!! Form::open(['route' => ['accounting.destroy', $payments->id], 'method' => 'DELETE' ]) !!}
 

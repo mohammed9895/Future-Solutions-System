@@ -26,4 +26,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('description', 'DescriptionController');
 
+    Route::resource('salary', 'SalaryController');
+
 });
